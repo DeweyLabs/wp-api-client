@@ -1,8 +1,7 @@
 require 'faraday'
-require 'faraday_middleware'
 require 'faraday-http-cache'
-require 'typhoeus'
-require 'typhoeus/adapters/faraday'
+# require 'typhoeus'
+# require 'typhoeus/adapters/faraday'
 
 module WpApiClient
   class Connection
@@ -15,9 +14,10 @@ module WpApiClient
       @queue = []
       @conn = Faraday.new(url: configuration.endpoint) do |faraday|
 
-        if configuration.oauth_credentials
-          faraday.use FaradayMiddleware::OAuth, configuration.oauth_credentials
-        end
+        # Disabled OAuth for now since Faraday Middleware is deprecated
+        # if configuration.oauth_credentials
+        #   faraday.use FaradayMiddleware::OAuth, configuration.oauth_credentials
+        # end
 
         if configuration.basic_auth
           faraday.basic_auth(configuration.basic_auth[:username], configuration.basic_auth[:password])
@@ -38,7 +38,7 @@ module WpApiClient
 
         faraday.use Faraday::Response::RaiseError
         faraday.response :json, :content_type => /\bjson$/
-        faraday.adapter  :typhoeus
+        # faraday.adapter  :typhoeus
       end
     end
 

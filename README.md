@@ -1,3 +1,13 @@
+Dewey Notes
+
+Updating Faraday:
+- removed Faraday Middleware since it's deprecated which disables OAuth
+ - probably easy to solve with some looking into how adapters should be done
+- removed typhoeous, which disables concurrent requests
+ - probably easy to solve with https://github.com/dleavitt/faraday-typhoeus
+
+
+
 # 🚨 This gem is unmaintained!
 
 _11 Feb 2021_

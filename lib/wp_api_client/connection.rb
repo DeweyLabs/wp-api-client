@@ -20,7 +20,7 @@ module WpApiClient
         # end
 
         if configuration.basic_auth
-          faraday.basic_auth(configuration.basic_auth[:username], configuration.basic_auth[:password])
+          faraday.request :authorization, :basic, configuration.basic_auth[:username], configuration.basic_auth[:password]
         end
 
         if configuration.debug

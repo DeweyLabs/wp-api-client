@@ -48,6 +48,16 @@ RSpec.describe WpApiClient::Configuration do
       end
     end
 
+    it "can set up basic auth credentials", vcr: { cassette_name: :basic_auth } do
+      pending "figuring out how to setup api test server"
+      WpApiClient.configure do |api_client|
+        api_client.basic_auth = {username: "foo", password: "bar"}
+      end
+
+      WpApiClient.get_client.get('posts/1')
+    end
+
+
     it "can set up OAuth credentials", vcr: {cassette_name: :oauth_test} do
       oauth_credentials = get_test_oauth_credentials
 

@@ -36,7 +36,6 @@ module WpApiClient
           faraday.proxy configuration.proxy
         end
 
-        faraday.use Faraday::Response::RaiseError
         faraday.response :json, :content_type => /\bjson$/
         # faraday.adapter  :typhoeus
       end
@@ -69,7 +68,6 @@ private
       end
       params
     end
-
 
   end
 end

@@ -1,6 +1,5 @@
 RSpec.describe WpApiClient::Collection do
-  describe "fetching posts of a certain post type", vcr: {cassette_name: 'custom_post_type_collection', record: :new_episodes} do
-
+  describe "fetching posts of a certain post type", vcr: {cassette_name: "custom_post_type_collection", record: :new_episodes} do
     before :each do
       @collection = @api.get("custom_post_type")
     end
@@ -14,7 +13,7 @@ RSpec.describe WpApiClient::Collection do
       paged_id = @collection.first.id
 
       @next_page = @api.get(@collection.next_page)
-      expect(@next_page.first.id).to eq (paged_id - 10)
+      expect(@next_page.first.id).to eq(paged_id - 10)
 
       @previous_page = @api.get(@next_page.previous_page)
       expect(@previous_page.first.id).to eq paged_id
@@ -28,7 +27,7 @@ RSpec.describe WpApiClient::Collection do
       expect(single_post).not_to be_an Array
 
       expect {
-        WpApiClient::Collection.new(single_post.resource)
+        WpApiClient::Collection.new(single_post.resource, nil, @instance)
       }.not_to raise_error
     end
 
@@ -40,7 +39,7 @@ RSpec.describe WpApiClient::Collection do
 
     it "throws an error when it tries to parse an error response" do
       expect {
-        WpApiClient::Collection.new([{"code"=>"rest_forbidden", "message"=>"You don't have permission to do this.", "data"=>{"status"=>403}}])
+        WpApiClient::Collection.new([{"code" => "rest_forbidden", "message" => "You don't have permission to do this.", "data" => {"status" => 403}}])
       }.to raise_error
     end
   end

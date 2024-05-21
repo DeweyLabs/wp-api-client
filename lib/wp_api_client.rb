@@ -22,19 +22,9 @@ require "wp_api_client/collection"
 require "wp_api_client/relationship"
 
 module WpApiClient
-
-  def self.get_client
-    @client ||= Client.new(Connection.new(configuration))
-  end
-
-  # for tests
-  def self.reset!
-    @client = nil
-  end
-
   class RelationNotDefined < StandardError; end
-  class ErrorResponse < StandardError
 
+  class ErrorResponse < StandardError
     attr_reader :error
     attr_reader :status
 

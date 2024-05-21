@@ -1,22 +1,23 @@
-require 'open-uri'
-require 'ostruct'
+require "open-uri"
+require "ostruct"
 
 module WpApiClient
   module Entities
     class Base
-      attr_reader :resource
+      attr_reader :resource, :client_instance
 
-      def self.build(resource)
+      def self.build(resource, client_instance)
         raise Exception if resource.nil?
         type = WpApiClient::Entities::Types.find { |type| type.represents?(resource) }
-        type.new(resource)
+        type.new(resource, client_instance)
       end
 
-      def initialize(resource)
+      def initialize(resource, client_instance)
         unless resource.is_a? Hash or resource.is_a? OpenStruct
-          raise ArgumentError.new('Tried to initialize a WP-API resource with something other than a Hash')
+          raise ArgumentError.new("Tried to initialize a WP-API resource with something other than a Hash")
         end
         @resource = OpenStruct.new(resource)
+        @client_instance = client_instance
       end
 
       def links
@@ -25,7 +26,7 @@ module WpApiClient
 
       def relations(relation, relation_to_return = nil)
         relationship = Relationship.new(@resource, relation)
-        relations = relationship.get_relations
+        relations = relationship.get_relations(client_instance)
         if relation_to_return
           relations[relation_to_return]
         else
@@ -33,8 +34,8 @@ module WpApiClient
         end
       end
 
-      def method_missing(method, *args)
-        @resource.send(method, *args)
+      def method_missing(method, *)
+        @resource.send(method, *)
       end
     end
   end

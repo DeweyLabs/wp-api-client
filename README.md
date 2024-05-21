@@ -57,11 +57,13 @@ require 'wp_api_client'
 ```ruby
 # create a client
 
-WpApiClient.configure do |api_client|
+wordpress_instance = WpApiClient::Instance.new
+
+wordpress_instance.configure do |api_client|
   api_client.endpoint = 'http://example.com/wp-json/wp/v2'
 end
 
-@api = WpApiClient.get_client
+@api = wordpress_instance.client
 
 # get some posts
 posts = @api.get('custom_post_type/') # or "posts/" etc
@@ -171,7 +173,7 @@ queen = king.relations("http://api.myuniqueuri.com/marriage").first
 The solution is to register the relationship on configuration:
 
 ```ruby
-WpApiClient.configure do |c|
+wordpress_instance.configure do |c|
   c.define_mapping("http://api.myuniqueuri.com/marriage", :post)
 end
 
@@ -199,11 +201,11 @@ posts = term.posts
 Provide a symbol-keyed hash of `token`, `token_secret`, `consumer_key` and `consumer_secret` on configuration.
 
 ```ruby
-WpApiClient.configure do |api_client|
+wordpress_instance.configure do |api_client|
   api_client.oauth_credentials = oauth_credentials_hash
 end
 
-client = WpApiClient.get_client
+client = wordpress_instance.client
 ```
 
 #### Basic Auth
@@ -211,11 +213,11 @@ client = WpApiClient.get_client
 Provide a symbol-keyed hash of `username` and `password` on configuration.
 
 ```ruby
-WpApiClient.configure do |api_client|
+wordpress_instance.configure do |api_client|
   api_client.basic_auth = {username: 'miles', password: 'smile'}
 end
 
-client = WpApiClient.get_client
+client = wordpress_instance.client
 ```
 
 ## Concurrency

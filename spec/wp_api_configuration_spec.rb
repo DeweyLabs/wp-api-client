@@ -1,11 +1,9 @@
 require "webmock/rspec"
 
 RSpec.describe WpApiClient::Configuration do
-  describe "#configure" do
-    before(:each) do
-      WpApiClient.reset!
-    end
+  let(:instance) { WpApiClient::Instance.new }
 
+  describe "#configure" do
     it "can set the endpoint URL for the API connection" do
       VCR.turned_off do
         imaginary_api_location = "http://example.com/wp-json/wp/v2"
@@ -19,77 +17,77 @@ RSpec.describe WpApiClient::Configuration do
           )
 
         # Configure the API client to point somewhere else
-        WpApiClient.configure do |api_client|
+        instance.configure do |api_client|
           api_client.endpoint = imaginary_api_location
         end
-        WpApiClient.get_client.get("custom_post_type")
+        instance.client.get("custom_post_type")
       end
     end
 
     it "can specify whether or not to request embedded resources" do
       VCR.turned_off do
-        WpApiClient.configure do |api_client|
+        instance.configure do |api_client|
           api_client.embed = false
         end
 
         # get an example API response and mock it
         ::WebMock.stub_request(:get,
-          WpApiClient.configuration.endpoint + "/posts/1").to_return(
+          instance.configuration.endpoint + "/posts/1").to_return(
             body: example_response,
             headers: {"Content-Type" => "application/json"}
           )
 
-        post = WpApiClient.get_client.get("posts/1")
+        instance.client.get("posts/1")
       end
     end
 
     it "can set up basic auth credentials", vcr: {cassette_name: :basic_auth} do
-      WpApiClient.configure do |api_client|
+      instance.configure do |api_client|
         api_client.basic_auth = {username: "foo", password: "bar"}
       end
 
       expect {
-        WpApiClient.get_client.get("posts/1")
+        instance.client.get("posts/1")
       }.not_to raise_error
     end
 
     it "ensures that basic auth credentials are symbolized", vcr: {cassette_name: :basic_auth} do
-      WpApiClient.configure do |api_client|
+      instance.configure do |api_client|
         api_client.basic_auth = {"username" => "foo", "password" => "bar"}
       end
 
       expect_any_instance_of(Faraday::Connection).to receive(:request).with(:authorization, :basic, "foo", "bar")
 
       expect {
-        WpApiClient.get_client.get("posts/1")
+        instance.client.get("posts/1")
       }.not_to raise_error
     end
 
     it "can set up OAuth credentials", vcr: {cassette_name: :oauth_test} do
       oauth_credentials = get_test_oauth_credentials
 
-      WpApiClient.configure do |api_client|
+      instance.configure do |api_client|
         api_client.oauth_credentials = oauth_credentials
       end
 
-      WpApiClient.get_client.get("posts/1")
+      instance.client.get("posts/1")
     end
 
     it "can set up link relationships", vcr: {cassette_name: :single_post} do
-      WpApiClient.configure do |api_client|
+      instance.configure do |api_client|
         api_client.define_mapping("http://my.own/mapping", :post)
       end
 
-      post = WpApiClient.get_client.get("posts/1")
+      post = instance.client.get("posts/1")
       expect { post.relations("http://my.own/mapping") }.not_to raise_error
     end
 
     it "exposes a #proxy configuration option" do
-      WpApiClient.configure do |api_client|
+      instance.configure do |api_client|
         api_client.proxy = "http://localhost:8080"
       end
 
-      expect(WpApiClient.configuration.proxy).to eq "http://localhost:8080"
+      expect(instance.configuration.proxy).to eq "http://localhost:8080"
     end
   end
 

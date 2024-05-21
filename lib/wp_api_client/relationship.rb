@@ -1,8 +1,7 @@
-require 'open-uri'
+require "open-uri"
 
 module WpApiClient
   class Relationship
-
     class << self
       attr_writer :mappings
 
@@ -30,39 +29,39 @@ module WpApiClient
         }
       end
 
-      def term(r)
+      def term(r, client_instance)
         relations = {}
         r.resource["_links"][r.relation].each_with_index do |link, position|
-          relations.merge! Hash[link["taxonomy"], r.load_relation(r.relation, position)]
+          relations.merge! Hash[link["taxonomy"], r.load_relation(r.relation, position, client_instance)]
         end
         relations
       end
 
-      def terms(r)
-        r.load_relation(r.relation, 0)
+      def terms(r, client_instance)
+        r.load_relation(r.relation, 0, client_instance)
       end
 
-      def user(r)
-        r.load_relation(r.relation).first
+      def user(r, client_instance)
+        r.load_relation(r.relation, nil, client_instance).first
       end
 
-      def post_type(r)
+      def post_type(r, client_instance)
         relations = {}
         r.resource["_links"][r.relation].each_with_index do |link, position|
-          # get the post type out of the linked URL.
-          post_type = URI.parse(link["href"]).path.split('wp/v2/').pop.split('/').first
-          relations.merge! Hash[post_type, r.load_relation(r.relation, position)]
+          #  get the post type out of the linked URL.
+          post_type = URI.parse(link["href"]).path.split("wp/v2/").pop.split("/").first
+          relations.merge! Hash[post_type, r.load_relation(r.relation, position, client_instance)]
         end
         relations
       end
 
-      def post(r)
-        r.load_relation(r.relation)
+      def post(r, client_instance)
+        r.load_relation(r.relation, nil, client_instance)
       end
 
-      def meta(r)
+      def meta(r, client_instance)
         relations = {}
-        meta = WpApiClient.get_client.get(r.resource["_links"][r.relation].first["href"])
+        meta = client_instance.client.get(r.resource["_links"][r.relation].first["href"])
         meta.map do |m|
           relations.merge! Hash[m.key, m.value]
         end
@@ -74,14 +73,14 @@ module WpApiClient
     attr_reader :relation
 
     def initialize(resource, relation)
-      if resource["_links"].keys.include? 'curies'
+      if resource["_links"].keys.include? "curies"
         relation = convert_uri_to_curie(relation)
       end
       @resource = resource
       @relation = relation
     end
 
-    def get_relations
+    def get_relations(client_instance)
       mapping = self.class.mappings[@relation]
       if !mapping
         raise WpApiClient::RelationNotDefined.new %{
@@ -96,43 +95,43 @@ end
 
 The currently defined relations are:
 
-#{self.class.mappings.keys.join("\n") }
+#{self.class.mappings.keys.join("\n")}
 
 Available mappings are :post, :term, and :meta.}
       end
 
       # Only try to fetch the relation if there are any links to it
-      self.class.send(mapping, self) if resource["_links"][relation]
+      self.class.send(mapping, self, client_instance) if resource["_links"][relation]
     end
 
     # try to load an embedded object; call out to the API if not
-    def load_relation(relationship, position = nil)
+    def load_relation(relationship, position = nil, client_instance)
       if objects = @resource.dig("_embedded", relationship)
         location = position ? objects[position] : objects
         begin
-          WpApiClient::Collection.new(location)
+          WpApiClient::Collection.new(location, {}, client_instance)
         rescue WpApiClient::ErrorResponse
-          load_from_links(relationship, position)
+          load_from_links(relationship, position, client_instance)
         end
       else
-        load_from_links(relationship, position)
+        load_from_links(relationship, position, client_instance)
       end
     end
 
-    def load_from_links(relationship, position = nil)
-      unless position.nil?
-        location = @resource["_links"].dig(relationship, position.to_i, "href")
-      else
+    def load_from_links(relationship, position = nil, client_instance)
+      if position.nil?
         if @resource["_links"][relationship].is_a? Array
           # If the resources are linked severally, crank through and
           # retrieve them one by one as an array
-          return @resource["_links"][relationship].map { |link| WpApiClient.get_client.get(link["href"]) }
+          return @resource["_links"][relationship].map { |link| client_instance.client.get(link["href"]) }
         else
           # Otherwise, get the single link to the lot
           location = @resource["_links"][relationship]["href"]
         end
+      else
+        location = @resource["_links"].dig(relationship, position.to_i, "href")
       end
-      WpApiClient.get_client.get(location) if location
+      client_instance.client.get(location) if location
     end
 
     def convert_uri_to_curie(uri)

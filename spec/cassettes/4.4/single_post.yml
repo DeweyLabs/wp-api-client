@@ -43,7 +43,6 @@ http_interactions:
         comments. There you will have the option to edit or delete them.<\/p>\n"},"link":"http:\/\/localhost:8080\/%post%\/#comment-1","type":"comment","_links":{"self":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/comments\/1"}],"collection":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/comments"}],"up":[{"embeddable":true,"post_type":"post","href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts\/1"}]}}]],"https:\/\/api.w.org\/featuredmedia":[{"id":203,"date":"2016-03-30T00:20:04","slug":"203","type":"attachment","link":"http:\/\/localhost:8080\/203\/","title":{"rendered":""},"author":0,"alt_text":"","media_type":"image","mime_type":"image\/png","media_details":{"width":350,"height":150,"file":"2016\/03\/image-9.png","sizes":{"thumbnail":{"file":"image-9-150x150.png","width":150,"height":150,"mime_type":"image\/png","source_url":"http:\/\/localhost:8080\/app\/uploads\/2016\/03\/image-9-150x150.png"},"medium":{"file":"image-9-300x129.png","width":300,"height":129,"mime_type":"image\/png","source_url":"http:\/\/localhost:8080\/app\/uploads\/2016\/03\/image-9-300x129.png"},"full":{"file":"image-9.png","width":350,"height":150,"mime_type":"image\/png","source_url":"http:\/\/localhost:8080\/app\/uploads\/2016\/03\/image-9.png"}},"image_meta":{"aperture":"0","credit":"","camera":"","caption":"","created_timestamp":"0","copyright":"","focal_length":"0","iso":"0","shutter_speed":"0","title":"","orientation":"0","keywords":[]}},"source_url":"http:\/\/localhost:8080\/app\/uploads\/2016\/03\/image-9.png","_links":{"self":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/media\/203"}],"collection":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/media"}],"about":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/types\/attachment"}],"replies":[{"embeddable":true,"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/comments?post=203"}]}}],"https:\/\/api.w.org\/term":[[{"id":1,"link":"http:\/\/localhost:8080\/category\/uncategorized\/","name":"Uncategorized","slug":"uncategorized","taxonomy":"category","_links":{"self":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/categories\/1"}],"collection":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/categories"}],"about":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/taxonomies\/category"}],"http:\/\/api.w.org\/v2\/post_type":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts?categories=1"}]}}],[],[]],"https:\/\/api.w.org\/meta":[{"code":"rest_invalid_param","message":"Invalid
         parameter(s): context (context is not one of edit)","data":{"status":400,"params":["context
         (context is not one of edit)"]}}]}}'
-    http_version: 
   recorded_at: Mon, 18 Apr 2016 18:46:45 GMT
 - request:
     method: get
@@ -78,7 +77,6 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"id":1,"count":101,"description":"","link":"http:\/\/localhost:8080\/category\/uncategorized\/","name":"Uncategorized","slug":"uncategorized","taxonomy":"category","parent":0,"_links":{"self":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/categories\/1"}],"collection":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/categories"}],"about":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/taxonomies\/category"}],"http:\/\/api.w.org\/v2\/post_type":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts?categories=1"}]}}'
-    http_version: 
   recorded_at: Mon, 18 Apr 2016 18:46:45 GMT
 - request:
     method: get
@@ -150,6 +148,254 @@ http_interactions:
         91"},"content":{"rendered":""},"excerpt":{"rendered":""},"author":0,"featured_media":0,"comment_status":"open","ping_status":"open","sticky":false,"format":"standard","categories":[1],"tags":[],"custom_taxonomy":[],"_links":{"self":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts\/93"}],"collection":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts"}],"about":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/types\/post"}],"replies":[{"embeddable":true,"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/comments?post=93"}],"version-history":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts\/93\/revisions"}],"https:\/\/api.w.org\/attachment":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/media?parent=93"}],"https:\/\/api.w.org\/term":[{"taxonomy":"category","embeddable":true,"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/categories?post=93"},{"taxonomy":"post_tag","embeddable":true,"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/tags?post=93"},{"taxonomy":"custom_taxonomy","embeddable":true,"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/custom_taxonomy?post=93"}],"https:\/\/api.w.org\/meta":[{"embeddable":true,"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts\/93\/meta"}]},"_embedded":{"https:\/\/api.w.org\/term":[[{"id":1,"link":"http:\/\/localhost:8080\/category\/uncategorized\/","name":"Uncategorized","slug":"uncategorized","taxonomy":"category","_links":{"self":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/categories\/1"}],"collection":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/categories"}],"about":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/taxonomies\/category"}],"http:\/\/api.w.org\/v2\/post_type":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts?categories=1"}]}}],[],[]],"https:\/\/api.w.org\/meta":[{"code":"rest_invalid_param","message":"Invalid
         parameter(s): context (context is not one of edit)","data":{"status":400,"params":["context
         (context is not one of edit)"]}}]}}]'
-    http_version: 
   recorded_at: Mon, 18 Apr 2016 18:46:46 GMT
-recorded_with: VCR 3.0.1
+- request:
+    method: get
+    uri: http://localhost:8080/wp-json/wp/v2/posts/1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 21 May 2024 16:02:28 GMT
+      Server:
+      - Apache/2.4.57 (Debian)
+      X-Powered-By:
+      - PHP/8.2.15
+      X-Robots-Tag:
+      - noindex
+      Link:
+      - <http://localhost:8080/hello-world/>; rel="alternate"; type=text/html
+      X-Content-Type-Options:
+      - nosniff
+      Access-Control-Expose-Headers:
+      - X-WP-Total, X-WP-TotalPages, Link
+      Access-Control-Allow-Headers:
+      - Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type
+      Allow:
+      - GET
+      Vary:
+      - Origin
+      Content-Length:
+      - '1701'
+      Content-Type:
+      - application/json; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: '{"id":1,"date":"2024-02-08T17:50:24","date_gmt":"2024-02-08T17:50:24","guid":{"rendered":"http:\/\/localhost:8080\/?p=1"},"modified":"2024-02-08T17:50:24","modified_gmt":"2024-02-08T17:50:24","slug":"hello-world","status":"publish","type":"post","link":"http:\/\/localhost:8080\/hello-world\/","title":{"rendered":"Hello
+        world!"},"content":{"rendered":"\n<p>Welcome to WordPress. This is your first
+        post. Edit or delete it, then start writing!<\/p>\n","protected":false},"excerpt":{"rendered":"<p>Welcome
+        to WordPress. This is your first post. Edit or delete it, then start writing!<\/p>\n","protected":false},"author":1,"featured_media":0,"comment_status":"open","ping_status":"open","sticky":false,"template":"","format":"standard","meta":{"footnotes":""},"categories":[1],"tags":[],"_links":{"self":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts\/1"}],"collection":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts"}],"about":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/types\/post"}],"author":[{"embeddable":true,"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/users\/1"}],"replies":[{"embeddable":true,"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/comments?post=1"}],"version-history":[{"count":0,"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts\/1\/revisions"}],"wp:attachment":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/media?parent=1"}],"wp:term":[{"taxonomy":"category","embeddable":true,"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/categories?post=1"},{"taxonomy":"post_tag","embeddable":true,"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/tags?post=1"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}'
+  recorded_at: Tue, 21 May 2024 16:02:29 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/wp-json/wp/v2/categories?_embed=true&post=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 21 May 2024 16:02:29 GMT
+      Server:
+      - Apache/2.4.57 (Debian)
+      X-Powered-By:
+      - PHP/8.2.15
+      X-Robots-Tag:
+      - noindex
+      Link:
+      - <http://localhost:8080/wp-json/>; rel="https://api.w.org/"
+      X-Content-Type-Options:
+      - nosniff
+      Access-Control-Expose-Headers:
+      - X-WP-Total, X-WP-TotalPages, Link
+      Access-Control-Allow-Headers:
+      - Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type
+      X-Wp-Total:
+      - '1'
+      X-Wp-Totalpages:
+      - '1'
+      Allow:
+      - GET
+      Vary:
+      - Origin
+      Content-Length:
+      - '603'
+      Content-Type:
+      - application/json; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: '[{"id":1,"count":1,"description":"","link":"http:\/\/localhost:8080\/category\/uncategorized\/","name":"Uncategorized","slug":"uncategorized","taxonomy":"category","parent":0,"meta":[],"_links":{"self":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/categories\/1"}],"collection":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/categories"}],"about":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/taxonomies\/category"}],"wp:post_type":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts?categories=1"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}]'
+  recorded_at: Tue, 21 May 2024 16:02:29 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/wp-json/wp/v2/tags?_embed=true&post=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 21 May 2024 16:02:29 GMT
+      Server:
+      - Apache/2.4.57 (Debian)
+      X-Powered-By:
+      - PHP/8.2.15
+      X-Robots-Tag:
+      - noindex
+      Link:
+      - <http://localhost:8080/wp-json/>; rel="https://api.w.org/"
+      X-Content-Type-Options:
+      - nosniff
+      Access-Control-Expose-Headers:
+      - X-WP-Total, X-WP-TotalPages, Link
+      Access-Control-Allow-Headers:
+      - Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type
+      X-Wp-Total:
+      - '0'
+      X-Wp-Totalpages:
+      - '0'
+      Allow:
+      - GET
+      Vary:
+      - Origin
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: "[]"
+  recorded_at: Tue, 21 May 2024 16:02:29 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/wp-json/wp/v2/categories?post=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 21 May 2024 16:24:00 GMT
+      Server:
+      - Apache/2.4.57 (Debian)
+      X-Powered-By:
+      - PHP/8.2.15
+      X-Robots-Tag:
+      - noindex
+      Link:
+      - <http://localhost:8080/wp-json/>; rel="https://api.w.org/"
+      X-Content-Type-Options:
+      - nosniff
+      Access-Control-Expose-Headers:
+      - X-WP-Total, X-WP-TotalPages, Link
+      Access-Control-Allow-Headers:
+      - Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type
+      X-Wp-Total:
+      - '1'
+      X-Wp-Totalpages:
+      - '1'
+      Allow:
+      - GET
+      Vary:
+      - Origin
+      Content-Length:
+      - '603'
+      Content-Type:
+      - application/json; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: '[{"id":1,"count":1,"description":"","link":"http:\/\/localhost:8080\/category\/uncategorized\/","name":"Uncategorized","slug":"uncategorized","taxonomy":"category","parent":0,"meta":[],"_links":{"self":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/categories\/1"}],"collection":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/categories"}],"about":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/taxonomies\/category"}],"wp:post_type":[{"href":"http:\/\/localhost:8080\/wp-json\/wp\/v2\/posts?categories=1"}],"curies":[{"name":"wp","href":"https:\/\/api.w.org\/{rel}","templated":true}]}}]'
+  recorded_at: Tue, 21 May 2024 16:24:00 GMT
+- request:
+    method: get
+    uri: http://localhost:8080/wp-json/wp/v2/tags?post=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v2.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 21 May 2024 16:24:00 GMT
+      Server:
+      - Apache/2.4.57 (Debian)
+      X-Powered-By:
+      - PHP/8.2.15
+      X-Robots-Tag:
+      - noindex
+      Link:
+      - <http://localhost:8080/wp-json/>; rel="https://api.w.org/"
+      X-Content-Type-Options:
+      - nosniff
+      Access-Control-Expose-Headers:
+      - X-WP-Total, X-WP-TotalPages, Link
+      Access-Control-Allow-Headers:
+      - Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type
+      X-Wp-Total:
+      - '0'
+      X-Wp-Totalpages:
+      - '0'
+      Allow:
+      - GET
+      Vary:
+      - Origin
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json; charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: "[]"
+  recorded_at: Tue, 21 May 2024 16:24:00 GMT
+recorded_with: VCR 6.2.0

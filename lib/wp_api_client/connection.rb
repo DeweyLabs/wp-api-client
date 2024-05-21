@@ -36,6 +36,7 @@ module WpApiClient
 
         faraday.use Faraday::Response::RaiseError
         faraday.response :json, content_type: /\bjson$/
+
         # faraday.adapter  :typhoeus
       end
     end

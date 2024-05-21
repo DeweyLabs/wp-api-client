@@ -1,5 +1,4 @@
 module WpApiClient
-
   class << self
     attr_writer :configuration
   end
@@ -22,12 +21,20 @@ module WpApiClient
     attr_accessor :oauth_credentials
     attr_accessor :debug
     attr_accessor :cache
-    attr_accessor :basic_auth
+    attr_reader :basic_auth
     attr_accessor :proxy
 
     def initialize
-      @endpoint = 'http://localhost:8080/wp-json/wp/v2'
+      @endpoint = "http://localhost:8080/wp-json/wp/v2"
       @embed = true
+    end
+
+    def basic_auth=(hash)
+      # Symbolizes one level of keys
+      @basic_auth = hash.each_with_object({}) do |(key, value), result|
+        symbol_key = key.to_sym
+        result[symbol_key] = value
+      end
     end
 
     def define_mapping(relation, type)
@@ -41,6 +48,5 @@ module WpApiClient
       end
       params
     end
-
   end
 end

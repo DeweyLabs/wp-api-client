@@ -1,11 +1,10 @@
-require 'faraday'
-require 'faraday-http-cache'
+require "faraday"
+require "faraday-http-cache"
 # require 'typhoeus'
 # require 'typhoeus/adapters/faraday'
 
 module WpApiClient
   class Connection
-
     attr_accessor :headers
     attr_reader :concurrent
 
@@ -13,7 +12,6 @@ module WpApiClient
       @configuration = configuration
       @queue = []
       @conn = Faraday.new(url: configuration.endpoint) do |faraday|
-
         # Disabled OAuth for now since Faraday Middleware is deprecated
         # if configuration.oauth_credentials
         #   faraday.use FaradayMiddleware::OAuth, configuration.oauth_credentials
@@ -36,7 +34,9 @@ module WpApiClient
           faraday.proxy configuration.proxy
         end
 
-        faraday.response :json, :content_type => /\bjson$/
+        faraday.use Faraday::Response::RaiseError
+        faraday.response :json, content_type: /\bjson$/
+
         # faraday.adapter  :typhoeus
       end
     end
@@ -57,7 +57,7 @@ module WpApiClient
       responses
     end
 
-private
+    private
 
     def parse_params(params)
       params = @configuration.request_params.merge(params)
@@ -68,6 +68,5 @@ private
       end
       params
     end
-
   end
 end

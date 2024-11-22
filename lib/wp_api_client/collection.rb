@@ -18,15 +18,19 @@ module WpApiClient
     end
 
     def next_page
-      @links[:next] && @links[:next]
+      @links[:next]
     end
 
     def previous_page
-      @links[:prev] && @links[:prev]
+      @links[:prev]
     end
 
     def method_missing(method, *)
       @resources.send(method, *)
+    end
+
+    def respond_to_missing?(method, include_private = false)
+      @resources.respond_to?(method, include_private) || super
     end
 
     private

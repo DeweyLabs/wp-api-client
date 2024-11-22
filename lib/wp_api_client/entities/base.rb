@@ -7,7 +7,7 @@ module WpApiClient
       attr_reader :resource, :client_instance
 
       def self.build(resource, client_instance)
-        raise Exception if resource.nil?
+        raise StandardError.new("Resource is nil") if resource.nil?
         type = WpApiClient::Entities::Types.find { |type| type.represents?(resource) }
         type.new(resource, client_instance)
       end
@@ -36,6 +36,10 @@ module WpApiClient
 
       def method_missing(method, *)
         @resource.send(method, *)
+      end
+
+      def respond_to_missing?(method, include_private = false)
+        @resource.respond_to?(method, include_private) || super
       end
     end
   end

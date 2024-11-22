@@ -33,11 +33,7 @@ module WpApiClient
       @basic_auth = if hash.nil?
         nil
       else
-        # Symbolizes one level of keys
-        hash.each_with_object({}) do |(key, value), result|
-          symbol_key = key.to_sym
-          result[symbol_key] = value
-        end
+        WpApiClient::Utils.deep_symbolize(hash)
       end
     end
 

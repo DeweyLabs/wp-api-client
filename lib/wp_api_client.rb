@@ -20,6 +20,7 @@ require "wp_api_client/concurrent_client"
 require "wp_api_client/connection"
 require "wp_api_client/collection"
 require "wp_api_client/relationship"
+require "wp_api_client/utils"
 
 module WpApiClient
   class RelationNotDefined < StandardError; end
@@ -27,10 +28,12 @@ module WpApiClient
   class ErrorResponse < StandardError
     attr_reader :error
     attr_reader :status
+    attr_reader :data
 
     def initialize(json)
-      @error = OpenStruct.new(json)
-      @status = @error.data["status"]
+      error_data = WpApiClient::Utils.deep_symbolize(json)
+      @error = OpenStruct.new(error_data)
+      @status = @error.data[:status]
       super(@error.message)
     end
   end

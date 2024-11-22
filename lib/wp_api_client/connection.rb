@@ -1,7 +1,6 @@
 require "faraday"
 require "faraday-http-cache"
-# require 'typhoeus'
-# require 'typhoeus/adapters/faraday'
+require "faraday/follow_redirects"
 
 module WpApiClient
   class Connection
@@ -11,33 +10,33 @@ module WpApiClient
     def initialize(configuration)
       @configuration = configuration
       @queue = []
-      @conn = Faraday.new(url: configuration.endpoint) do |faraday|
+      @conn = Faraday.new(url: configuration.endpoint) do |f|
         # Disabled OAuth for now since Faraday Middleware is deprecated
         # if configuration.oauth_credentials
-        #   faraday.use FaradayMiddleware::OAuth, configuration.oauth_credentials
+        #   f.use FaradayMiddleware::OAuth, configuration.oauth_credentials
         # end
 
         if configuration.basic_auth
-          faraday.request :authorization, :basic, configuration.basic_auth[:username], configuration.basic_auth[:password]
+          f.request :authorization, :basic, configuration.basic_auth[:username], configuration.basic_auth[:password]
         end
 
         if configuration.debug
-          faraday.response :logger
-          faraday.use :instrumentation
+          f.response :logger
+          f.use :instrumentation
         end
 
         if configuration.cache
-          faraday.use :http_cache, store: configuration.cache, shared_cache: false
+          f.use :http_cache, store: configuration.cache, shared_cache: false
         end
 
         if configuration.proxy
-          faraday.proxy configuration.proxy
+          f.proxy configuration.proxy
         end
 
-        faraday.use Faraday::Response::RaiseError
-        faraday.response :json, content_type: /\bjson$/
-
-        # faraday.adapter  :typhoeus
+        f.use Faraday::Response::RaiseError
+        f.response :raise_error
+        f.response :json, content_type: /\bjson$/
+        f.response :follow_redirects, limit: 0
       end
     end
 

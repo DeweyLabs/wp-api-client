@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "faraday", "~> 2.7"
   spec.add_dependency "faraday-http-cache", "~> 2.5"
-  spec.add_dependency "faraday-follow_redirects", "~> 0.3.0"
+  spec.add_dependency "faraday-follow_redirects", "~> 0.3"
 
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec"
